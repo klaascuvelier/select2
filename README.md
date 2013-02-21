@@ -85,7 +85,6 @@ Added options:
 * Specify the results list width -> border top fix
 * Add item if not exist
 * Keep dropdown (if multiple)
-* Disable search
 * Remove language files, translation can be done by extending the defaults
 
 
@@ -93,4 +92,3 @@ Todo
 ----
 * Add item if not exist
 * Keep dropdown (if multiple)
-* Disable search

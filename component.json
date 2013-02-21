@@ -1,7 +1,7 @@
 {
-    "name": "select2",
+    "name": "select2-kcuvelier",
     "version": "3.3.1",
-    "main": ["select2.js", "select2.css", "select2.png", "select2x2.png", "spinner.gif"],
+    "main": ["select2.js", "select2.css", "spinner.gif"],
     "dependencies": {
         "jquery": "~1.4.4"
     }
