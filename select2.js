@@ -1550,12 +1550,13 @@ the specific language governing permissions and limitations under the Apache Lic
             }).html([
                 "<a href='javascript:void(0)' onclick='return false;' class='select2-choice' tabindex='-1'>",
                 "   <span></span><abbr class='select2-search-choice-close' style='display:none;'></abbr>",
-                "   <div><b></b></div>" ,
+                "   <div><b><i class='icon-toggle'></i></b></div>" ,
                 "</a>",
                 "<input class='select2-focusser select2-offscreen' type='text'/>",
                 "<div class='select2-drop' style='display:none'>" ,
                 "   <div class='select2-search'>" ,
                 "       <input type='text' autocomplete='off' class='select2-input'/>" ,
+                "       <i class='icon-search'></i>",
                 "   </div>" ,
                 "   <ul class='select2-results'>" ,
                 "   </ul>" ,
@@ -1737,7 +1738,7 @@ the specific language governing permissions and limitations under the Apache Lic
             }));
             this.search.bind("focus", this.bind(function(){
                 this.container.addClass("select2-container-active");
-            }))
+            }));
 
             this.initContainerWidth();
             this.setPlaceholder();
@@ -1995,7 +1996,6 @@ the specific language governing permissions and limitations under the Apache Lic
                 "class": "select2-container select2-container-multi"
             }).html([
                 "    <ul class='select2-choices'>",
-                //"<li class='select2-search-choice'><span>California</span><a href="javascript:void(0)" class="select2-search-choice-close"></a></li>" ,
                 "  <li class='select2-search-field'>" ,
                 "    <input type='text' autocomplete='off' class='select2-input'>" ,
                 "  </li>" ,
@@ -2325,7 +2325,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 enabledItem = $(
                     "<li class='select2-search-choice'>" +
                     "    <div></div>" +
-                    "    <a href='#' onclick='return false;' class='select2-search-choice-close' tabindex='-1'></a>" +
+                    "    <a href='#' onclick='return false;' class='select2-search-choice-close' tabindex='-1'><i class='icon-close'></i></a>" +
                     "</li>"),
                 disabledItem = $(
                     "<li class='select2-search-choice select2-locked'>" +
