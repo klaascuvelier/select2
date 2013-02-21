@@ -1554,6 +1554,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 "   <span></span><abbr class='select2-search-choice-close' style='display:none;'></abbr>",
                 "   <div><b><i class='icon-toggle'></i></b></div>" ,
                 "</a>",
+                "<div class='hide-border'></div>",
                 "<input class='select2-focusser select2-offscreen' type='text'/>",
                 "<div class='select2-drop' style='display:none'>" ,
                 "   <div class='select2-search'>" ,
@@ -2633,6 +2634,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
     // plugin defaults, accessible to users
     $.fn.select2.defaults = {
+        resultsWidth: null,
         width: "copy",
         loadMorePadding: 0,
         closeOnSelect: true,

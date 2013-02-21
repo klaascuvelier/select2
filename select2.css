@@ -131,7 +131,6 @@ Version: @@ver@@ Timestamp: @@timestamp@@
     background: #fff;
     color: #000;
     border: 1px solid #aaa;
-    border-top: 0;
 
     -webkit-border-radius: 0 0 4px 4px;
        -moz-border-radius: 0 0 4px 4px;
@@ -141,6 +140,27 @@ Version: @@ver@@ Timestamp: @@timestamp@@
        -moz-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
             box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
 }
+
+
+.hide-border {
+    display: none;
+    position: absolute;
+
+    left: 1px;
+    bottom: -1px;
+
+    height: 2px;
+    width: 89px;
+
+    z-index: 10001;
+
+    background: #fff;
+}
+
+.select2-dropdown-open .hide-border {
+    display: block;
+}
+
 
 .select2-drop.select2-drop-above {
     margin-top: 1px;
@@ -193,7 +213,7 @@ Version: @@ver@@ Timestamp: @@timestamp@@
     display: inline-block;
     width: 100%;
     min-height: 26px;
-    margin: 0;
+    margin: 4px 0 0 0;
     padding-left: 4px;
     padding-right: 4px;
 

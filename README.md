@@ -82,7 +82,7 @@ Removed images, use classes instead.
 (icon-close, icon-toggle, icon-search)
 
 Added options:
-* Specify the results list width
+* Specify the results list width -> border top fix
 * Add item if not exist
 * Keep dropdown (if multiple)
 * Disable search
@@ -91,7 +91,6 @@ Added options:
 
 Todo
 ----
-* Container size
 * Add item if not exist
 * Keep dropdown (if multiple)
 * Disable search
