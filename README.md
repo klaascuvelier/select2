@@ -87,15 +87,13 @@ Added options:
 * Add item if not exist
 * Keep dropdown (if multiple)
 * Disable search
-* Remove languages, option to pass in language strings
+* Remove language files, translation can be done by extending the defaults
 
 
 Todo
 ----
-* Images to icons
 * No lighter placeholder
 * Container size
 * Add item if not exist
 * Keep dropdown (if multiple)
 * Disable search
-* Remove languages, option to pass in language strings
