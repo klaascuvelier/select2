@@ -147,10 +147,10 @@ Version: @@ver@@ Timestamp: @@timestamp@@
     position: absolute;
 
     left: 1px;
+    right: 1px;
     bottom: -1px;
 
     height: 2px;
-    width: 89px;
 
     z-index: 10001;
 
