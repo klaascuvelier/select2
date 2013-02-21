@@ -90,5 +90,4 @@ Added options:
 
 Todo
 ----
-* Add item if not exist
 * Keep dropdown (if multiple)

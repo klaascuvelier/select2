@@ -1425,9 +1425,41 @@ the specific language governing permissions and limitations under the Apache Lic
                     }
                 }
 
-                if (data.results.length === 0 && checkFormatter(opts.formatNoMatches, "formatNoMatches")) {
-                    render("<li class='select2-no-results'>" + opts.formatNoMatches(search.val()) + "</li>");
-                    return;
+                var searchVal = search.val(),
+                    newItem = {
+                    css: null,
+                    disabled: false,
+                    element: null,
+                    id: "$$" + search.val() + "$$",
+                    text: this.opts.formatAddNewItem(searchVal)
+                };
+
+                // no results found, add item or show not found message
+                if (data.results.length === 0) {
+
+                    if (opts.allowAddNewItem) {
+
+                        data.results[0] = newItem;
+
+                    } else if (checkFormatter(opts.formatNoMatches, "formatNoMatches")) {
+                        render("<li class='select2-no-results'>" + opts.formatNoMatches(searchVal) + "</li>");
+                        return;
+                    }
+                } else if (searchVal.length > 0) {
+                    // might be necessary to add new item if none of the results is a perfect match!
+                    var exact       = false,
+                        searchText  = $.trim(searchVal).toLowerCase();
+
+
+                    $.each(data.results, function (index, result) {
+                        if ($.trim(result.text).toLowerCase() === searchText) {
+                            exact = true;
+                        }
+                    });
+
+                    if (!exact) {
+                        data.results.push(newItem);
+                    }
                 }
 
                 results.empty();
@@ -1470,13 +1502,38 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // abstract
         selectHighlighted: function (options) {
-            var index=this.highlight(),
-                highlighted=this.results.find(".select2-highlighted"),
-                data = highlighted.closest('.select2-result').data("select2-data");
+            var index       = this.highlight(),
+                highlighted = this.results.find(".select2-highlighted"),
+                data        = highlighted.closest('.select2-result').data("select2-data"),
+                self        = this,
+                d           = void 0,
+                callback    = void 0;
 
             if (data) {
-                this.highlight(index);
-                this.onSelect(data, options);
+                callback = this.opts.addNewItemCallback;
+
+                d = $.Deferred();
+                d.done(function () {
+                    self.highlight(index);
+                    self.onSelect(data, options);
+                });
+
+                if (data.id.substr(0,2) === '$$' && !!callback) {
+                    data.text = data.id.substr(2, data.id.length - 4);
+
+                    // call callback with text, expect to get a value back so we can append this
+                    $.when(callback(data.text)).then(function (response) {
+                        self.select.append('<option value="' + response + '">' + data.text + '</option>');
+                        data.id = response;
+
+                        d.resolve();
+                    }, function (response) { /* fail silently */ });
+
+                } else {
+                    // resolve right away
+                    d.resolve();
+                }
+
             }
         },
 
@@ -1834,7 +1891,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 // check for a first blank option if attached to a select
                 if (this.select && this.select.find("option:first").text() !== "") return;
 
-                this.selection.find("span").html(this.opts.escapeMarkup(placeholder));
+                this.selection.find("span").html(placeholder);
 
                 this.selection.addClass("select2-default");
 
@@ -2634,7 +2691,8 @@ the specific language governing permissions and limitations under the Apache Lic
 
     // plugin defaults, accessible to users
     $.fn.select2.defaults = {
-        resultsWidth: null,
+        allowAddNewItem: false,
+        addNewItemCallback: null,
         width: "copy",
         loadMorePadding: 0,
         closeOnSelect: true,
@@ -2661,6 +2719,7 @@ the specific language governing permissions and limitations under the Apache Lic
         formatSelectionTooBig: function (limit) { return "You can only select " + limit + " item" + (limit == 1 ? "" : "s"); },
         formatLoadMore: function (pageNumber) { return "Loading more results..."; },
         formatSearching: function () { return "Searching..."; },
+        formatAddNewItem: function (search) { return "Add " + search; },
         minimumResultsForSearch: 0,
         minimumInputLength: 0,
         maximumInputLength: null,
