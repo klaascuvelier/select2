@@ -82,8 +82,7 @@ Removed images, use classes instead.
 (icon-close, icon-toggle, icon-search)
 
 Added options:
-* No lighter placeholder
-* Container size
+* Specify the results list width
 * Add item if not exist
 * Keep dropdown (if multiple)
 * Disable search
@@ -92,7 +91,6 @@ Added options:
 
 Todo
 ----
-* No lighter placeholder
 * Container size
 * Add item if not exist
 * Keep dropdown (if multiple)
