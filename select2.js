@@ -1236,7 +1236,7 @@ the specific language governing permissions and limitations under the Apache Lic
             while (index > -1 && index < choices.length) {
                 index += delta;
                 var choice = $(choices[index]);
-                console.log(choice);
+
                 if (choice.hasClass("select2-result-selectable") && !choice.hasClass("select2-disabled") && !choice.hasClass("select2-selected")) {
                     this.highlight(index);
                     break;
@@ -2812,7 +2812,6 @@ the specific language governing permissions and limitations under the Apache Lic
                 killEventImmediately(e);
                 this.close();
                 this.selection.focus();
-                console.log('HERE');
             }));
 
             selection.bind("mousedown", this.bind(function (e) {
@@ -2936,8 +2935,6 @@ the specific language governing permissions and limitations under the Apache Lic
         // fancy
         postprocessResults: function (data, initial) {
             var selected = 0, self = this, showSearchInput = true;
-
-console.log(this.findHighlightableChoices());
 
 
             this.findHighlightableChoices().each2(function (i, elm) {
