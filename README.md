@@ -86,8 +86,3 @@ Added options:
 * Add item if not exist
 * Keep dropdown (if multiple)
 * Remove language files, translation can be done by extending the defaults
-
-
-Todo
-----
-* Keep dropdown (if multiple)
