@@ -2693,6 +2693,16 @@ the specific language governing permissions and limitations under the Apache Lic
             this.parent.opening.apply(this, arguments);
             this.focusser.attr("disabled", "disabled");
 
+            // select items
+            var val = this.val(), d;
+            this.dropdown.find('li').each(function (idx, item) {
+                d = $(item).data('select2Data');
+
+                if (d && $.inArray(d.id, val) > -1) {
+                    $(item).addClass('active');
+                }
+            });
+
             this.opts.element.trigger($.Event("open"));
         },
 
