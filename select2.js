@@ -1874,11 +1874,11 @@ the specific language governing permissions and limitations under the Apache Lic
         // single
         getPlaceholder: function() {
             // if a placeholder is specified on a single select without the first empty option ignore it
-            if (this.select) {
-                if (this.select.find("option").first().text() !== "") {
-                    return undefined;
-                }
-            }
+            // if (this.select) {
+            //     if (this.select.find("option").first().text() !== "") {
+            //         return undefined;
+            //     }
+            // }
 
             return this.parent.getPlaceholder.apply(this, arguments);
         },
@@ -2912,11 +2912,11 @@ the specific language governing permissions and limitations under the Apache Lic
         // fancy
         getPlaceholder: function() {
             // if a placeholder is specified on a single select without the first empty option ignore it
-            if (this.select) {
-                if (this.select.find("option").first().text() !== "") {
-                    return undefined;
-                }
-            }
+            // if (this.select) {
+            //     if (this.select.find("option").first().text() !== "") {
+            //         return undefined;
+            //     }
+            // }
 
             return this.parent.getPlaceholder.apply(this, arguments);
         },
