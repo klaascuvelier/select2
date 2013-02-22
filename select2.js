@@ -2875,7 +2875,6 @@ the specific language governing permissions and limitations under the Apache Lic
                 var self = this;
                 this.opts.initSelection.call(null, this.opts.element, function(selected){
                     if (selected !== undefined && selected !== null) {
-                        self.updateSelection(selected);
                         self.close();
                         self.setPlaceholder();
                     }
