@@ -1236,6 +1236,7 @@ the specific language governing permissions and limitations under the Apache Lic
             while (index > -1 && index < choices.length) {
                 index += delta;
                 var choice = $(choices[index]);
+                console.log(choice);
                 if (choice.hasClass("select2-result-selectable") && !choice.hasClass("select2-disabled") && !choice.hasClass("select2-selected")) {
                     this.highlight(index);
                     break;
@@ -2936,13 +2937,20 @@ the specific language governing permissions and limitations under the Apache Lic
         postprocessResults: function (data, initial) {
             var selected = 0, self = this, showSearchInput = true;
 
+console.log(this.findHighlightableChoices());
+
+
             this.findHighlightableChoices().each2(function (i, elm) {
+
                 if ($.inArray(self.id(elm.data("select2-data")), self.opts.element.val()) > -1) {
-                    // self.highlight(i);
-                    elm.addClass('active');
+                    self.highlight(i);
                 }
             });
 
+
+            if (this.highlight() == -1){
+                self.highlight(0);
+            }
 
             // hide the search box if this is the first we got the results and there are a few of them
 
@@ -2966,23 +2974,27 @@ the specific language governing permissions and limitations under the Apache Lic
         // fancy
         onSelect: function (data, options) {
 
-            var self = this;
+            var self    = this,
+                item    = null;
+
+            // find the element
+            this.dropdown.find('li').each(function (idx, el) {
+                var element     = $(el),
+                    itemData    = element.data('select2Data'),
+                    itemId      = itemData ? itemData.id : 0 ;
+
+                if (itemId === data.id) {
+                    item = element;
+                }
+
+            });
+
 
             if ($.inArray(data.id, this.val()) > -1) {
-
-                this.dropdown.find('li.active').each(function (idx, item) {
-                    var element     = $(item),
-                        itemData    = element.data('select2Data'),
-                        itemId      = itemData ? itemData.id : 0 ;
-
-                    if (itemId === data.id) {
-                        self.unselect(element);
-                    }
-
-                });
-
+                self.unselect(item);
             } else {
 
+                item.addClass('active');
 
                 this.addSelectedChoice(data);
                 this.opts.element.trigger({ type: "selected", val: this.id(data), choice: data });
@@ -2991,11 +3003,8 @@ the specific language governing permissions and limitations under the Apache Lic
                     this.postprocessResults();
                 }
 
-                if (!options || !options.noFocus) {
-                    this.selection.focus();
-                }
-
                 this.triggerChange({ added: data });
+
             }
         },
 
@@ -3040,6 +3049,8 @@ the specific language governing permissions and limitations under the Apache Lic
 
             this.opts.element.trigger({ type: "removed", val: this.id(data), choice: data });
             this.triggerChange({ removed: data });
+
+            this.highlight(selected.index());
         },
 
         // fancy
