@@ -1,5 +1,6 @@
 /*
 Copyright 2012 Igor Vaynberg
+@Klaas Cuvelier
 
 Version: @@ver@@ Timestamp: @@timestamp@@
 
@@ -1872,7 +1873,6 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // single
         getPlaceholder: function() {
-            alert('place');
             // if a placeholder is specified on a single select without the first empty option ignore it
             if (this.select) {
                 if (this.select.find("option").first().text() !== "") {
