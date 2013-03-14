@@ -793,6 +793,14 @@ the specific language governing permissions and limitations under the Apache Lic
                             'background: url(' + opts.spinnerUrl + ') no-repeat 100%, -ms-linear-gradient(top, #ffffff 85%, #eeeeee 99%);' +
                             'background: url(' + opts.spinnerUrl + ') no-repeat 100%, linear-gradient(top, #ffffff 85%, #eeeeee 99%);' +
                         '}' +
+
+                        '.select2-more-results.select2-active {' +
+                            'background: #f4f4f4 url(' + opts.spinnerUrl + ') no-repeat 100%;' +
+                        '}' +
+
+                        '.select2-container-multi .select2-choices .select2-search-field input.select2-active {' +
+                            'background: #fff url(' + opts.spinnerUrl + ') no-repeat 100% !important;' +
+                        '}' +
                     '</style>'
                 );
             }
