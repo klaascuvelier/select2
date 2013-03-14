@@ -781,6 +781,22 @@ the specific language governing permissions and limitations under the Apache Lic
                 }
             }, $.fn.select2.defaults, opts);
 
+            if (!!opts.spinnerUrl) {
+                $('body').append(
+                    '<style>' +
+                        '.select2-search input.select2-active {' +
+                            'background: #fff url(' + opts.spinnerUrl + ') no-repeat 100%;' +
+                            'background: url(' + opts.spinnerUrl + ') no-repeat 100%, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));' +
+                            'background: url(' + opts.spinnerUrl + ') no-repeat 100%, -webkit-linear-gradient(center bottom, white 85%, #eeeeee 99%);' +
+                            'background: url(' + opts.spinnerUrl + ') no-repeat 100%, -moz-linear-gradient(center bottom, white 85%, #eeeeee 99%);' +
+                            'background: url(' + opts.spinnerUrl + ') no-repeat 100%, -o-linear-gradient(bottom, white 85%, #eeeeee 99%);' +
+                            'background: url(' + opts.spinnerUrl + ') no-repeat 100%, -ms-linear-gradient(top, #ffffff 85%, #eeeeee 99%);' +
+                            'background: url(' + opts.spinnerUrl + ') no-repeat 100%, linear-gradient(top, #ffffff 85%, #eeeeee 99%);' +
+                        '}' +
+                    '</style>'
+                );
+            }
+
             if (typeof(opts.id) !== "function") {
                 idKey = opts.id;
                 opts.id = function (e) { return e[idKey]; };
@@ -3292,6 +3308,7 @@ the specific language governing permissions and limitations under the Apache Lic
         },
         blurOnChange: false,
         selectOnBlur: false,
+        spinnerUrl: null,
         adaptContainerCssClass: function(c) { return c; },
         adaptDropdownCssClass: function(c) { return null; }
     };

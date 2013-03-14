@@ -86,3 +86,4 @@ Added options:
 * Add item if not exist
 * Keep dropdown (if multiple)
 * Remove language files, translation can be done by extending the defaults
+* Option to specify path to spinner via (spinnerUrl)
